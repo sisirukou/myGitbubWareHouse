@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, user-scalable=no" /><link rel="stylesheet" type="text/css" href="css/index.css">
+<title>其他测试</title>
+<script type="text/javascript">
+	function getCookie(c_name){
+		if (document.cookie.length>0){ 
+			c_start = document.cookie.indexOf(c_name + "=");
+			if (c_start != -1){ 
+				c_start = c_start + c_name.length + 1; 
+				c_end = document.cookie.indexOf(";",c_start);
+				if(c_end == -1){
+					c_end = document.cookie.length;
+				}
+				return unescape(document.cookie.substring(c_start, c_end));
+			} 
+		}
+		return ""
+	}
+
+	function setCookie(){
+		var username = prompt('请输入你的cookie值:',"")
+		var exdate = new Date();
+		exdate.setDate(exdate.getDate() + 365);
+		document.cookie="username=" + escape(username) + (";expires=" + exdate.toGMTString());
+	}
+
+	function checkCookie(){
+		var username = getCookie('username');
+		var info = null;
+		if (username != null && username != ""){
+			info = "本页面的cookie值为:" + username;
+		}else{
+			info = "本页面不存在cookie，请点击设置cookie按钮设置cookie";
+		}
+		document.getElementById('coo').innerHTML = info;
+	}
+
+	function delCookie(){ 
+		var exp = new Date(); 
+		exp.setDate(exp.getDate() - 366); 
+		var cval = getCookie('username'); 
+		if(cval != null){
+			document.cookie = "username=" + cval + ";expires=" + exp.toGMTString();
+			alert("清除成功！");
+		}
+	} 
+</script>
+</head>
+
+<body>
+	<div class="tit">cookie是否正常</div>
+		<div class="conbor">
+			<div class="consj">
+				<span>表现形式：点击以下‘检查cookie’按钮，如果cookie存在时，会有相应的显示，点击‘设置cookie’按钮可为本页面设置一个id为‘username’，有效期为365天的cookie。
+				cookie设置好了后，若没有手动清除，在365天内均有效（即使退出了应用，并重新启动），即点击‘检查cookie’按钮会有相应的显示。如果设置了cookie，但点击‘检查cookie’按钮
+				时仍然提示没有找到cookie，则表现为不正常。请立即提交BUG。
+				</span>
+				<input class="btn" type="button" value="检查cookie" onclick="checkCookie()"><br>
+				<input class="btn" type="button" value="设置cookie" onclick="setCookie()"><br>
+				<input class="btn" type="button" value="清除cookie" onclick="delCookie()">
+				<div class="tcxx" id="coo"></div>
+			</div>
+		</div>
+		<br><br><br><input class="btn" type="button" value="返回" onclick="uexWindow.back();"><br><br>
+</body>
+</html>

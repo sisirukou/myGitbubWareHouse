@@ -1,0 +1,110 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, user-scalable=no" /><link rel="stylesheet" type="text/css" href="css/index.css">
+<title>WidgetOne信息</title>
+<script type="text/javascript">
+
+	function versionSuccess(opId,dataType,data){
+		document.getElementById('widgetOneVer').innerHTML = data;
+	}
+
+	function platformSuccess(opId,dataType,data){
+		if(data == 0){
+			document.getElementById('widgetOnePlatform').innerHTML = "IOS";
+		}else if(data == 1){
+			document.getElementById('widgetOnePlatform').innerHTML = "android";
+		}
+	}
+	
+	function getsyn(){
+		var plat = uexWidgetOne.getPlatform();
+		if(plat == 0){
+			plat = "IOS";
+		}else if(plat == 1){
+			plat = "android";
+		}
+		alert(plat);
+	}
+	
+	function idSuccess(opId,dataType,data){
+		document.getElementById('widgetInfo').innerHTML = data;
+	}
+	function currentWidgetInfo(opId,dataType,data){
+		switch (dataType) {
+			case 1:
+				
+				var obj = eval('('+data+')');
+				document.getElementById('currentWidgetInfo').innerHTML = "widgetId = "+obj.widgetId+"<br>appId = "+obj.appId+"<br>version = "+obj.version+
+					"<br>name = "+obj.name+"<br>icon = "+obj.icon;
+			break;
+			case 2:
+				alert("获取信息失败！");
+
+		}
+	}
+	
+	function cleanCacheCallBack(opId,dataType,data){
+		if(data == 0){
+			alert("清除成功！");
+		}else{
+			alert("非主widget不能清除Cache！");
+		}
+	}
+	function getMainWidgetId(opId,dataType,data){
+		var appId = data;
+		alert("主widgetId 为："+appId);
+	}
+	
+	window.uexOnload = function() {
+		uexWidgetOne.cbGetId = idSuccess;
+		uexWidgetOne.cbGetVersion = versionSuccess;
+		uexWidgetOne.cbGetPlatform = platformSuccess;
+		uexWidgetOne.cbGetCurrentWidgetInfo = currentWidgetInfo;
+		uexWidgetOne.cbCleanCache = cleanCacheCallBack;
+		uexWidgetOne.cbGetMainWidgetId = getMainWidgetId;
+	}
+	
+</script>
+</head>
+
+<body>
+	<div class="tit">WidgetOne信息</div>
+	<div class="conbor">
+		<div class="consj">
+		
+			<span>1.获取系统名称</span>
+			<input class="btn" type="button" value="获取" onclick="alert('系统为:' + uexWidgetOne.platformName)">
+			<div class="tcxx" id="widgetOneVer"></div>
+			
+			<span>2.获取系统版本</span>
+			<input class="btn" type="button" value="获取" onclick="alert('系统版本为:' + uexWidgetOne.platformVersion)">
+			<div class="tcxx" id="widgetOneVers"></div>
+			
+			<span>3.得到应用的平台信息</span>
+			<input class="btn" type="button" value="得到应用的平台信息" onclick="uexWidgetOne.getPlatform();">
+			<div class="tcxx" id="widgetOnePlatform"></div>
+			
+			<span>4.获取当前widget信息</span>
+			<input class="btn" type="button" value="获取当前widget信息" onclick="uexWidgetOne.getCurrentWidgetInfo()">
+			<span>当前widget信息：</span>
+			<div class="tcxx" id="currentWidgetInfo"></div>
+
+			<span>5.退出程序</span>
+			<input class="btn" type="button" value="退出程序" onclick="uexWidgetOne.exit()">
+			
+			<span>6.清除cache</span>
+			<input class="btn" type="button" value="清除cache" onclick="uexWidgetOne.cleanCache()">
+			
+			<span>7.得到主widget 的appId</span>
+			<input class="btn" type="button" value="获取ID" onclick="uexWidgetOne.getMainWidgetId();">
+			
+			<span>8.同步获取系统类型（如android，iphone等）</span>
+			<input class="btn" type="button" value="获取" onclick="getsyn()">
+		</div>
+		<br><br>
+		<input class="btn" type="button" value="返回" onclick="uexWindow.back();">
+	</div>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, user-scalable=no" /><link rel="stylesheet" type="text/css" href="css/index.css">
+<title>音乐功能</title>
+<script type="text/javascript">
+	//启动上报
+	function BaiduReport(){
+        //建议应用在启动的时候则调用以下
+        // uexBaiduDataAnalysis.setLogStrategy(isWifi,strategy,[inInterval]);
+        // 设置上报策略
+        // BaiduMobStatLogStrategyAppLaunch = 0, //每次程序启动
+        // BaiduMobStatLogStrategyDay = 1, //每天的程序第一次进入前台
+        // BaiduMobStatLogStrategyCustom = 2, //根据开发者设定的时间间隔接口发送
+        uexBaiduDataAnalysis.setLogStrategy(0,0,2);
+        //设置是否上报异常日志，设置为1，则是上报异常，不上报则设置为0;
+        uexBaiduDataAnalysis.setEnableExceptionLog(1);
+        //设置channelId,iphone默认为appstore
+        uexBaiduDataAnalysis.setChannelId("appCan");     
+        //启动上报,设置appid,从百度平台注册 
+        uexBaiduDataAnalysis.startWithAppId("aeb2382961");
+	}
+	function BaiduEvent(){
+		var inEventId ="xll";//从百度数据统计注册
+		var inLabel = document.getElementById("clickId").value;
+        //调用自定义事件
+        alert(inEventId+"---"+inLabel);
+        uexBaiduDataAnalysis.setLogEvent(inEventId,inLabel);
+	}
+    
+    window.uexOnload = function(){
+     //   
+        //BaiduReport();
+    }
+    function openNewWnd(){
+        //建议在此调用pageviewStartWithName，新建一个窗口
+        uexBaiduDataAnalysis.setPageviewStartWithName("AppCanTest");
+        //alert("open");
+        uexWindow.open("测试",'0',"baiduDataTest.html",0,'','',0x0);
+    }
+</script>
+</head>
+
+<body>
+	<div class="tit">百度数据统计分析</div>
+	<div class="conbor">
+		<div class="consj">
+			<span>1）.设置上报策略，不设置默认为每次启动上报，将百度统计策略合一，设置参数一为是否wifi环境上报；第二个参数为上报策略：分别对应启动上报，每日上报（间隔24小时），间隔上报（可设置大于1，小于24整数，默认为1，单位为 小时），参数三为可选，若策略选择为间隔上报，则可以设置大于1，小于24整数</span>
+			<span>2）.设置上报应用异常日志，不设置默认为false</span>
+			<span>3）.设置应用渠道，iphone默认不设置为appstore,android需要在配置文件中配置</span>
+            <span>5）appId 百度平台注册账号</span>
+			<span>6）以上三项为可选项，若不设置，则默认为百度数据SDK默认；建议在应用启动时候调用</span>
+			<span>1.启动上报，在此之前建议设置以上参数</span>
+			<input class="btn" type="button" value="启动上报" onclick="BaiduReport();">
+			<span>2.window跳转记录上报</span>
+			<input class="btn" type="button" value="打开新窗口" onclick="openNewWnd();">
+			<span>3.自定义事件上报，需要从百度平台注册自定义事件eventID</span>
+			<input class="btn" type="button" value="点击" id="clickId" onclick="BaiduEvent();"><br/>
+			<input class="btn" type="button" value="返回" onclick="uexWindow.back();">
+     
+			
+		</div>
+	</div>
+</body>
+</html>

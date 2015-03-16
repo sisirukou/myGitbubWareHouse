@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, user-scalable=no" /><link rel="stylesheet" type="text/css" href="css/index.css">
+<title>绿北谷城市控件</title>
+<script type="text/javascript">
+var cText = 0;
+var cJson = 1;
+var cInt = 2;
+
+	window.uexOnload = function(){
+        uexDiscuzz.cbForum = function(opCode,dataType,data){
+            if(data.length==0){
+                document.getElementById("selectItem").innerHTML ="未选择";
+            }else{
+            	alert(data);
+                var resultObj =eval('('+data+')');
+                document.getElementById("selectItem").innerHTML = resultObj.name +","+resultObj.id+","+resultObj.citeys.name+","+resultObj.citeys.id;
+            }
+            
+        };
+	}
+    function openBrandPicker(){
+        var jsonStr ='[{"name":"北京市是中华人民共和国的首都","id":"11","status":"1","citeys":[{"name":"海淀区","id":"111","status":"1"},{"name":"朝阳区","id":"112","status":"0"},{"name":"宣武区","id":"113","status":"0"}]},{"name":"上海","id":"12","status":"1","citeys":[{"name":"浦东区","id":"121","status":"1"},{"name":"静安区","id":"122","status":"0"},{"name":"崇明","id":"123","status":"0"}]},{"name":"天津","id":"13","citeys":[{"name":"宁河","id":"131"},{"name":"静海区","id":"132"},{"name":"蓟县","id":"133"}]},{"name":"重庆","id":"14","citeys":[{"name":"丰都","id":"141"},{"name":"江津","id":"142"},{"name":"南川","id":"143"},{"name":"垫江县","id":"144"}]},{"name":"河北","id":"15","citeys":[{"name":"石家庄","id":"151"},{"name":"唐山","id":"152"},{"name":"秦皇岛","id":"153"},{"name":"邯郸","id":"154"}]},{"name":"山西","id":"16","citeys":[{"name":"太原","id":"161"},{"name":"大同","id":"162"},{"name":"阳泉","id":"163"},{"name":"长治","id":"164"}]}]';
+        uexLG.openPicker(jsonStr);
+	}
+</script>
+</head>
+
+<body>
+	<div class="tit">绿北谷城市选择功能</div>
+	<div class="conbor">
+            <span>1.城市选择控件</span>
+            <input class="btn" type="button" value="打开控件" onclick="openBrandPicker();">
+            <div class="tcxx" id="selectItem"></div><br>
+			<input class="btn" type="button" value="返回" onclick="uexWindow.back();">		
+		</div>
+	</div>
+</body>
+</html>

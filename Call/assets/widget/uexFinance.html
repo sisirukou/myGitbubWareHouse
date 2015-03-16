@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport"
+	content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, user-scalable=no" />
+<link rel="stylesheet" type="text/css" href="css/index.css">
+<title>理财定制插件</title>
+<script type="text/javascript">
+    window.uexOnload = function() {
+		uexFinance.cbCreate = function(opCode, dataType, data) {
+			//alert("data:"+data);
+		}
+		uexWidgetOne.onError = function(opCode, errorCode, errorDesc) {
+			alert(errorCode + ":" + errorDesc);
+		}
+        uexFinance.onFresh = function(){
+            setTimeout("insert1()",2000); 
+        }                uexFinance.onItemClick = function(index){			var msg = "";			switch (index) {			case 0:				msg = "金融百科";				break;			case 1:				msg = "供应商";				break;			case 2:				msg = "增值服务";				break;			case 3:				msg = "我要融资";				break;			case 4:				msg = "投资理财";				break;			case 5:				msg = "在线拍卖";				break;			case 6:				msg = "金融问答";				break;			case 7:				msg = "工场咨询";				break;			}            uexWindow.toast(0, 5, msg, 1500);         }
+	}
+
+    function create(){
+        var jssonstr = "{\"collist\":[{\"name\":\"名称\",\"color\":\"#000000\",\"width\":\"0.4\"},{\"name\":\"预期收益率\",\"color\":\"#FF0000\",\"width\":\"0.4\"},{\"name\":\"委托期\",\"color\":\"#000000\",\"width\":\"0.4\"},{\"name\":\"委托期\",\"color\":\"#000000\",\"width\":\"0.4\"},{\"name\":\"委托期\",\"color\":\"#000000\",\"width\":\"0.4\"},{\"name\":\"委托期\",\"color\":\"#000000\",\"width\":\"0.4\"}],\"position\":{\"x\":\"0\",\"y\":\"300\",\"width\":\"480\",\"height\":\"380\"}}";
+        uexFinance.create(jssonstr);
+    }
+    function insert1(){     	var jsString = '{"itemlist":[]}';  		uexFinance.insertData(jsString);    }
+    function insert(){ 
+        var jsString = '{"itemlist": [[{"value": "产品名称","color": "#4169E1"},{"value": "10%","color": "#CD2626"},{"value": "2年","color": "#006400"},{"value": "2年","color": "#006400"},{"value": "2年","color": "#006400"},{"value": "2年","color": "#006400"}],[{"value": "产品名称","color": "#4169E1"},{"value": "10%","color": "#006400"}, {"value": "2年","color": "#CD2626"},{"value": "2年","color": "#006400"},{"value": "2年","color": "#006400"},{"value": "2年","color": "#006400"}],[{"value": "产品名称","color": "#4169E1"},{"value": "10%","color": "#006400"}, {"value": "2年","color": "#CD2626"},{"value": "2年","color": "#006400"},{"value": "2年","color": "#006400"},{"value": "2年","color": "#006400"}],[{"value": "产品名称","color": "#4169E1"},{"value": "10%","color": "#006400"}, {"value": "2年","color": "#006400"},{"value": "2年","color": "#006400"},{"value": "2年","color": "#006400"},{"value": "2年","color": "#006400"}],[{"value": "产品名称","color": "#4169E1"},{"value": "10%","color": "#CD2626"}, {"value": "2年","color": "#CD2626"},{"value": "2年","color": "#006400"},{"value": "2年","color": "#006400"},{"value": "2年","color": "#006400"}]]}';
+        uexFinance.insertData(jsString);
+    }
+    function clear1(){
+        uexFinance.clearData();
+    }
+    function close1(){
+        uexFinance.close();
+    }
+	function createRotate(){
+        uexFinance.createRotatePlugin('80','300','944','350');
+    }        function createCoverFlow(){    	uexCoverFlow.onItemSelected = function(index){    		uexWindow.toast(0, 5, "点击了第" + index + "项", 1500);    		uexCoverFlow.close();    	}    	uexCoverFlow.open(0, 0, 1024, 540);    }
+</script>
+</head>
+
+<body>
+	<div class="tit">理财定制插件</div><br>
+    <input type="button" value="创建" onclick="create();"/> 
+    <input type="button" value="插入数据" onclick="insert();"/>
+    <input type="button" value="清除" onclick = "clear1();"/>
+    <input type="button" value="关闭" onclick = "close1();"/>
+    <input type="button" value="打开旋转木马" onclick = "createRotate();"/>        	<input type="button" value="关闭旋转木马" onclick = "uexFinance.closeRotatePlugin();"/>    	<input type="button" value="打开CoverFlow" onclick = "createCoverFlow();"/>	
+    <input type="button" value="返回" onclick="uexWindow.back();"/>
+</body>
+</html>

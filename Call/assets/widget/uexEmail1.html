@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, user-scalable=no" />
+<link rel="stylesheet" type="text/css" href="css/index.css">
+<title>邮件功能</title>
+<script type="text/javascript">
+
+window.uexOnload = function() {	
+	uexFileMgr.cbExplorer=function (opCode,dataType,data){
+		switch(bb){
+			case 1:document.getElementById('attachmentPath').value = data;break;
+			case 2:document.getElementById('attachmentPath1').value = data;break;
+			case 3:document.getElementById('attachmentPath2').value = data;break;
+		}
+	}
+
+	uexWidgetOne.onError=function(opCode,errorCode,errorDesc){
+		alert(errorCode+":"+errorDesc);
+		}
+}
+function emailOpen(){
+	
+  var email =new Array();
+  email[0]="work@163.com";
+  email[1]="wonder@132.com";
+  email[2]="test@123.com";
+   //document.getElementById('receiverEmail').value;
+		//	if(!/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/.test(Email))
+			//{
+			//	alert('Email格式不正确');
+				//return;
+			//}
+			
+	uexEmail.open(email,document.getElementById('subject').value,document.getElementById('content').value,document.getElementById('attachmentPath').value+","+document.getElementById('attachmentPath1').value+","+document.getElementById('attachmentPath2').value);
+	
+}
+function aa(opCode){
+	bb = opCode;
+	uexFileMgr.explorer('');
+}
+</script>
+</head>
+
+<body>
+<div class="tit">邮件功能</div>
+<div class="conbor">
+<div class="consj"><span>1.进入发邮件界面</span> <span>收件人</span> <input
+	id="receiverEmail" type="text" class="textbox" value="test@163.com">
+<span>邮件主题</span> <input id="subject" type="text" class="textbox"
+	value="测试邮件"> <span>邮件内容</span> <input id="content" type="text"
+	class="textbox" value="我是邮件"> 
+	<span> 附件路径(基于file协议)</span> <input
+	class="btn" type="button" value="启动文件浏览器"
+	onclick="aa(1)"> <input id="attachmentPath"
+	type="text" class="textbox" readOnly="true"> <input class="btn"
+	type="button" value="进入发邮件界面"
+	onclick="emailOpen();">
+	<span> 附件路径(基于file协议)</span> <input class="btn" type="button" value="启动文件浏览器" onclick="aa(2);"> <input id="attachmentPath1" type="text" class="textbox" readonly="true"> <input class="btn" type="button" value="进入发邮件界面" onclick="emailOpen();">
+	<span> 附件路径(基于file协议)</span> <input class="btn" type="button" value="启动文件浏览器" onclick="aa(3);"> <input id="attachmentPath2" type="text" class="textbox" readonly="true"> <input class="btn" type="button" value="进入发邮件界面" onclick="emailOpen();">
+<input class="btn" type="button" value="返回" onclick="uexWindow.back();">
+</div>
+</div>
+</body>
+</html>

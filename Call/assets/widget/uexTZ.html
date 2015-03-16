@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, user-scalable=no" /><link rel="stylesheet" type="text/css" href="css/index.css">
+<title>绿北谷城市控件</title>
+<script type="text/javascript">
+var cText = 0;
+var cJson = 1;
+var cInt = 2;
+
+	window.uexOnload = function(){
+        uexTZ.cbOpenPicker = function(opCode,dataType,data){
+            if(data.length==0){
+                document.getElementById("selectItem").innerHTML ="未选择";
+            }else{
+            	alert(data);
+                var resultObj =eval('('+data+')');
+                document.getElementById("selectItem").innerHTML = resultObj.name +","+resultObj.id+","+resultObj.citeys.name+","+resultObj.citeys.id;
+            }
+            
+        };
+	}
+    function openBrandPicker(){
+        var jsonStr ='[{"name":"企业","id":"4","status":"0","citeys":[{"name":"企业","id":"7","status":"0"}, {"name": "投资新闻","id": "1","status":"0"} ]},{"name":"我的关注","id":"8","status":"0","citeys":[{"name":"我的关注","id":"8","status":"0"}]}]';
+        uexTZ.openPicker(jsonStr);
+	}
+</script>
+</head>
+
+<body>
+	<div class="tit">绿北谷城市选择功能</div>
+	<div class="conbor">
+            <span>1.城市选择控件</span>
+            <input class="btn" type="button" value="打开控件" onclick="openBrandPicker();">
+            <div class="tcxx" id="selectItem"></div><br>
+			<input class="btn" type="button" value="返回" onclick="uexWindow.back();">		
+		</div>
+	</div>
+</body>
+</html>

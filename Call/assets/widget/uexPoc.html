@@ -1,0 +1,137 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, user-scalable=no" /><link rel="stylesheet" type="text/css" href="css/index.css">
+<title>poc功能</title>
+<script type="text/javascript">
+var cText = 0;
+var cJson = 1;
+var cInt = 2;
+
+	window.uexOnload = function() {
+		uexPoc.cbGetBarcode = function(opCode,dataType,data) {
+			alert("dataType: ");
+			switch (dataType) {
+			case cText:
+				alert("getBarcode");
+				document.getElementById('BarcodeData').innerHTML = data;
+				break;
+			case cJson:
+				break;
+			case cInt:
+				alert("getBarcode error");
+				break;
+			default:
+			}
+		}
+		uexPoc.cbDeliveryInfo = function(opCode, dataType, data) {
+			switch (dataType) {
+			case cText:
+				break;
+			case cJson:
+				alert("deliveryInfo");
+				 var array = eval('('+data+')');
+				var str="";
+				for(var i=0;i<array.length;i++){
+					str = str + "item_name：" + array[i].item_name + "<br>displayed_item_name："
+					+ array[i].displayed_item_name + "<br>value：" + array[i].value
+					+ "<br>"+ "not_used：" + array[i].not_used;
+				}
+				document.getElementById('DeliveryInfoData').innerHTML = str;
+				break;
+			case cInt:
+				alert("deliveryInfo error");
+				break;
+			default:
+			}
+		}
+		uexPoc.cbSubmitDelivery = function(opCode, dataType, data) {
+			switch (dataType) {
+			case cText:
+				alert("submitDelivery");
+				document.getElementById('SubmitDeliveryData').innerHTML = data;
+				break;
+			case cJson:
+				break;
+			case cInt:
+				alert("submitDelivery error");
+				break;
+			default:
+			}
+		}
+		uexPoc.cbPurchaseInfo = function(opCode, dataType, data) {
+			switch (dataType) {
+			case cText:
+				break;
+			case cJson:
+				alert("purchaseInfo");
+				var array = eval('('+data+')');
+				var str="";
+				for(var i=0;i<array.length;i++){
+					str = str + "item_name：" + array[i].item_name + "<br>displayed_item_name："
+					+ array[i].displayed_item_name + "<br>value：" + array[i].value
+					+ "<br>"+ "not_used：" + array[i].not_used;
+				}
+				document.getElementById('PurchaseInfoData').innerHTML = str;
+				break;
+			case cInt:
+				alert("purchaseInfo error");
+				break;
+			default:
+			}
+		}
+		uexPoc.cbSubmitPurchase = function(opCode, dataType, data) {
+			switch (dataType) {
+			case cText:
+				alert("submitPurchase");
+				document.getElementById('submitPurchaseData').innerHTML = data;
+				break;
+			case cJson:				
+				break;
+			case cInt:
+				alert("submitPurchase error");
+				break;
+			default:
+			}
+		}
+	}
+</script>
+</head>
+
+<body>
+	<div class="tit">poc功能</div>
+	<div class="conbor">
+		<div class="consj">
+			<span>1.getBarcode()</span> 
+			<input class="btn" type="button" value="getBarcode" onclick="uexPoc.getBarcode();">
+			<div class="tcxx" id="BarcodeData"></div>
+			
+			<span>2.getDeliveryInfo()</span>
+			 <input class="textbox" type="text" value="0" id="deliveryInfo"><br>
+			 <input class="btn" type="button" value="getDeliveryInfo" onclick="uexPoc.getDeliveryInfo(document.getElementById('deliveryInfo').value);">
+			<div class="tcxx" id="DeliveryInfoData"></div>
+			
+			<span>3.submitDelivery()</span>
+			 <input class="textbox" type="text" value="0" id="submitDelivery"><br>
+			 <input class="btn" type="button" value="submitDelivery" onclick="uexPoc.submitDelivery(document.getElementById('submitDelivery').value);">
+			<div class="tcxx" id="SubmitDeliveryData"></div>
+			
+			<span>4.getPurchaseInfo()</span>
+			 <input class="textbox" type="text" value="0" id="purchaseInfo"><br> 
+			 <input class="btn" type="button" value="getPurchaseInfo" onclick="uexPoc.getPurchaseInfo(document.getElementById('purchaseInfo').value);">
+			<div class="tcxx" id="PurchaseInfoData"></div>
+			
+			<span>5.submitPurchase()</span>
+			 <input class="textbox" type="text" value="0" id="submitPurchase0"><br>
+			 <input class="textbox" type="text" value="0" id="submitPurchase1"><br>
+			 <input class="textbox" type="text" value="0" id="submitPurchase2"><br>
+			 <input class="btn" type="button" value="submitPurchase" onclick="uexPoc.submitPurchase(document.getElementById('submitPurchase0').value,document.getElementById('submitPurchase1').value,document.getElementById('submitPurchase2').value);">
+			<div class="tcxx" id="submitPurchaseData"></div>
+
+			<input class="btn" type="button" value="返回"
+				onclick="uexWindow.back();">
+		</div>
+	</div>
+</body>
+</html>

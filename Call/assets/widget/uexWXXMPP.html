@@ -1,0 +1,162 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+   <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, user-scalable=no" />
+<link rel="stylesheet" type="text/css" href="css/index.css">
+<script type="text/javascript">
+	function onGetCardInfo() {
+	alert("getCardInfo");
+		uexWXXMPP.notifyCardInfo('111','士兵甲');
+	}
+	
+	function onOffLineMsg(imName,msgNum) {
+		alert(imName+' offLine num is '+msgNum);
+	}
+	
+	function cbCreateGroupChat(groupId, status) {
+		alert('groupId is ' + groupId);
+		alert('status is ' + status);
+	}
+	
+	function cbDestroyGroupChat(groupId, status) {
+		alert('groupId is ' + groupId);
+		alert('status is ' + status);
+	}
+	
+	function cbJoinGroupChat(groupId, status) {
+		alert('groupId is ' + groupId);
+		alert('status is ' + status);
+	}
+
+	function cbLeaveGroupChat(groupId, status) {
+		alert('groupId is ' + groupId);
+		alert('status is ' + status);
+	}
+	
+	function cbKickFromGroupChat(groupId, status) {
+		alert('groupId is ' + groupId);
+		alert('status is ' + status);
+	}
+	
+	function cbSetGroupChatTitle(groupId, status) {
+		alert('groupId is ' + groupId);
+		alert('status is ' + status);
+	}
+	
+	function cbAddToBlackList(imId, uid, status) {
+		alert('imId is ' + imId);
+		alert('uid is ' + uid);
+		alert('status is ' + status);
+	}
+	
+	function cbRemoveFromBlackList(imId, uid, status) {
+		alert('imId is ' + imId);
+		alert('uid is ' + uid);
+		alert('status is ' + status);
+	}
+	
+	function cbGetChatListWithLastMsg(value) {
+		alert(value);
+	}
+	
+	function cbDeleteUserChatRecord(imName, status) {
+		alert('imName is ' + imName);
+		alert('status is ' + status);
+	}
+
+   function cbDeleteGroupChatRecord(groupId, status) {
+		alert('groupId is ' + groupId);
+		alert('status is ' + status);
+	}
+	
+   function cbDeleteAllRecord(status) {
+		alert('status is ' + status);
+	}
+
+
+	window.uexOnload = function(){
+		uexWXXMPP.onGetCardInfo = onGetCardInfo;
+		uexWXXMPP.onOffLineMsg = onOffLineMsg;
+		uexWXXMPP.cbCreateGroupChat = cbCreateGroupChat;
+		uexWXXMPP.cbDestroyGroupChat = cbDestroyGroupChat;
+		uexWXXMPP.cbJoinGroupChat = cbJoinGroupChat;
+		uexWXXMPP.cbKickFromGroupChat = cbKickFromGroupChat;
+		uexWXXMPP.cbLeaveGroupChat = cbLeaveGroupChat;
+		uexWXXMPP.cbSetGroupChatTitle = cbSetGroupChatTitle;
+		uexWXXMPP.cbAddToBlackList = cbAddToBlackList;
+		uexWXXMPP.cbRemoveFromBlackList = cbRemoveFromBlackList;
+		uexWXXMPP.cbGetChatListWithLastMsg = cbGetChatListWithLastMsg;
+	   uexWXXMPP.cbDeleteGroupChatRecord = cbDeleteGroupChatRecord;
+	   uexWXXMPP.cbDeleteAllRecord=cbDeleteAllRecord;
+	}
+	
+	function closeIm() {
+		uexWXXMPP.closeChatView('zhenyu1');
+	}
+	
+</script>
+</head>
+
+<body>
+	<div class="tit c-bg">
+		<div class="umw4">
+		<input class="btnzd-left" type="button" value="返回" onclick="uexWindow.back();">
+		</div>
+		<h1 class="tx-c ub-f1 ulev0">即时通信功能</h1>
+		<div class="umw4">
+		<input class="btnzd-right" type="button" value="关闭" onclick="closeIm();">
+		</div>
+	</div>
+	<div class="conbor">
+			<div class="consj">
+				<span>1.登录（ImId(即时通讯帐号)，ImPwd（即时通讯帐号密码），uid（应用用户UID），headUrl（用户头像服务器地址））</span>
+				<input class="btn" type="button" value="登录" onclick="uexWXXMPP.login('zhenyu','123456','uid1','res://emotion_normal.png')">
+				<span>2.登出（）</span>
+				<input class="btn" type="button" value="登出" onclick="uexWXXMPP.logout()">
+				<span>3.打开聊天窗口({otherUid（对方用户UID）, otherImId（对方即时通讯帐号）, otherHeadPic（对方的头像服务器地址）, isFriend（是否是好友0和1）, x, y, w, h})</span>
+				<input class="btn" type="button" value="打开聊天窗口" onclick="uexWXXMPP.openChatView('uid1','zhenyu1','res://keyboard_normal.png', '1','0','44','720','720')">
+				<span>4.关闭聊天窗口(otherImId（对方即时通讯帐号）)</span>
+				<input class="btn" type="button" value="关闭聊天窗口" onclick="uexWXXMPP.closeChatView('zhenyu1')">
+				<span>5.打开群聊窗口(ImGroupId, x, y, w, h)</span>
+				<input class="btn" type="button" value="打开群聊窗口" onclick="uexWXXMPP.openGroupChatView('group2','0','44','720','720')">
+				<span>6.关闭群聊窗口(imGroupId)</span>
+				<input class="btn" type="button" value="关闭群聊窗口" onclick="uexWXXMPP.closeGroupChatView('group2')">
+				<span>7.获取对话联系人列表最后一条消息（）返回值通过cbGetChatListWithLastMsg返回（[{imId,lastMsg,time}]）按时间顺序</span>
+				<input class="btn" type="button" value="获取对话联系人列表最后一条消息" onclick="uexWXXMPP.getChatListWithLastMsg()">
+				<span>8.创建群聊组（imGroupId）返回值通过cbCreateGroupChat(imGroupId, status)返回</span>
+				<input class="btn" type="button" value="创建群聊组" onclick="uexWXXMPP.createGroupChat('group2')">
+				<span>9.销毁群聊组（imGroupId）返回值通过cbDestroyGroupChat(imGroupId, status)返回</span>
+				<input class="btn" type="button" value="销毁群聊组" onclick="uexWXXMPP.destroyGroupChat('group2')">
+				<span>10.加入群聊组（imGroupId）返回值通过cbJoinGroupChat(imGroupId, status)返回</span>
+				<input class="btn" type="button" value="加入群聊组" onclick="uexWXXMPP.joinGroupChat('group2')">
+				<span>11.离开群聊组（imGroupId, reason）返回值通过cbLeaveGroupChat(imGroupId, status)返回</span>
+				<input class="btn" type="button" value="离开群聊组" onclick="uexWXXMPP.leaveGroupChat('group2','no reason')">
+				<span>12.设置群聊组主题（imGroupId,title）返回值通过cbSetGroupChatTitle(imGroupId, status)返回</span>
+				<input class="btn" type="button" value="设置群聊组主题" onclick="uexWXXMPP.setGroupChatTitle('group2','在北京')">
+				<span>13.剔出群聊组（imGroupId,imName,reason）返回值通过cbKickFromGroupChat(imGroupId,imName, status)返回</span>
+				<input class="btn" type="button" value="剔出群聊组" onclick="uexWXXMPP.kickFromGroupChat('group2','zd2','no like')">
+				<span>14.拉黑（imId,uid）返回值通过cbAddToBlackList(imId, uid, status)返回</span>
+				<input class="btn" type="button" value="拉黑某人" onclick="uexWXXMPP.addToBlackList('zd2','uid2')">
+				<span>15.取消拉黑（imId,uid）返回值通过cbRemoveFromBlackList(imId, uid, status)返回</span>
+				<input class="btn" type="button" value="取消拉黑" onclick="uexWXXMPP.removeFromBlackList('zd2','uid2')">
+				<span>16.通知离线消息（imName, offLineMsgNum）</span>
+				<input class="btn" type="button" value="通知离线消息" onclick="uexWXXMPP.onOffLineMsg('zd2', 5)">
+				<span>17.获取名片信息（）底层调用网页获取名牌信息</span>
+				<input class="btn" type="button" value="获取名片信息" onclick="uexWXXMPP.onGetCardInfo()">
+				<span>18.通知名片信息（imName, cardName）</span>
+				<input class="btn" type="button" value="通知名片信息" onclick="uexWXXMPP.notifyCardInfo('imName','cardName')">
+				<span>19.deleteUserChatRecord(imName)返回值通过cbDeleteUserChatRecord(imName, status)来返回</span>
+				<input class="btn" type="button" value="删除与某人的聊天记录" onclick="uexWXXMPP.deleteUserChatRecord('zd2')">
+					<span>20.deleteGroupChatRecord(imGroupId)返回值通过cbDeleteGroupChatRecord(imGroupId, status)来返回</span>
+				<input class="btn" type="button" value="删除某个群的聊天记录" onclick="uexWXXMPP.deleteGroupChatRecord('group2')">
+				<span>21.setMsgNotifyType(type)0为静音，1为震动，2为声音，3为震动+声音，返回值通过cbSetMsgNotifyType()来返回</span>
+				<input class="btn" type="button" value="设置消息提醒的类型" onclick="uexWXXMPP.setMsgNotifyType(3)">
+				
+				<span>22 删除所有的聊天记录</span>
+				<input class="btn" type="button" value="删除所有记录" onclick="uexWXXMPP.deleteAllRecord()">
+			</div>
+			<input class="btn" type="button" value="返回" onclick="uexWindow.back();">
+		</div>
+</body>
+</html>

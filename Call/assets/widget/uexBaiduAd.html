@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, user-scalable=no" /><link rel="stylesheet" type="text/css" href="css/index.css">
+<title>百度广告功能</title>
+<script type="text/javascript">
+var cText = 0;
+var cJson = 1;
+var cInt = 2;
+
+	
+	window.uexOnload = function(){
+		  
+		
+		
+
+	}
+	function setAppInfo(){
+		alert("setAppInfo");
+		uexBaiduAd.setAppInfo(document.getElementById('setId').value,document.getElementById('setSec').value);
+	}
+	function setFrame(){
+		alert("setFrame");
+		uexBaiduAd.setFrame(document.getElementById('setX').value,document.getElementById('setY').value,document.getElementById('setWidth').value,document.getElementById('setHeight').value);
+	}
+	function show(){
+		alert("show");
+		var array = new Array();
+		array[0] = document.getElementById('setType').value;
+		uexBaiduAd.show(array);
+	}
+		
+</script>
+</head>
+
+<body>
+	<div class="tit">百度广告功能</div>
+	<div class="conbor">
+		<div class="consj">
+			<span>1.设置广告消息</span>
+			百度id：<input class="textbox" type="text" value="debug" id="setId"><br>
+			百度Sec：<input class="textbox" type="text" value="debug" id="setSec"><br>
+			<input class="btn" type="button" value="设置百度id和sec" onclick="setAppInfo();">
+			<span>2.设置位置大小</span>
+			x坐标：<input class="textbox" type="text" value="10" id="setX"><br>
+			y坐标：<input class="textbox" type="text" value="10" id="setY"><br>
+			宽度：<input class="textbox" type="text" value="480" id="setWidth"><br>
+			高度：<input class="textbox" type="text" value="200" id="setHeight"><br>
+			<input class="btn" type="button" value="设置位置" onclick="setFrame();">
+			<span>3.显示广告</span>
+			广告类型：<input class="textbox" type="text" value="2" id="setType">
+			<input class="btn" type="button" value="显示广告" onclick="show();">
+			
+			<input class="btn" type="button" value="返回" onclick="uexWindow.back();">
+		</div>
+	</div>
+</body>
+</html>

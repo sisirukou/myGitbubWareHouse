@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<widget appId="" channelCode="000" height="480" sreensize="3.5" version="00.00.0001" widgetId="" width="320"> 
+  <name>1_基础功能类插件测试</name>  
+  <description>管理widget应用</description>  
+  <author email="3g2win@mail.com">3g2win</author>  
+  <icon src="icon.png"/>  
+  <license href="http://3g2win.com"/>  
+  <content encoding="utf-8" src="uexCall.html"/>  
+  <logserverip>192.168.1.98</logserverip>  
+  <obfuscation>true</obfuscation>  
+  <updateurl>http://192.168.1.125:8080/widget/update</updateurl>  
+  <showmyspace>false</showmyspace>  
+  <bgcolor>#fefefe</bgcolor>  
+  <widgetOne version="[widgetOneVersion]"/>  
+  <orientation>15</orientation> 
+</widget>

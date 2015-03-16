@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, user-scalable=no" /><link rel="stylesheet" type="text/css" href="css/index.css">
+<title>日期时间功能</title>
+<script type="text/javascript">
+
+	window.uexOnload = function(){
+		
+		uexWidgetOne.cbError = function(opCode, errorCode, errorInfo){
+			alert("错误代码："+errorCode+"\n"+"错误内容："+errorInfo);
+		}
+		
+		uexControl.cbOpenDatePicker=function(opCode,dataType,data){
+			if(dataType==1){
+				var obj = eval('('+data+')');
+				document.getElementById('date').innerHTML ="年：" +obj.year+"<br>月："+obj.month+"<br>日："+obj.day;
+			}
+		}
+		uexControl.cbOpenTimePicker=function(opCode,dataType,data){
+			if(dataType==1){
+				var obj = eval('('+data+')');
+				document.getElementById('systime').innerHTML ="小时：" +obj.hour+"<br>分钟："+obj.minute+"<br>";	
+			}
+		}
+		
+		uexControl.cbInputCompleted=function(opCode,dataType,data){	
+			document.getElementById('inputText').innerHTML =data;
+		}	
+	}
+	
+	function openInput(){
+		var inputHint=document.getElementById('inputHint').value;
+		var inputType=document.getElementById('inputType').value;
+		var btnText=document.getElementById('btnText').value;
+		uexControl.openInputDialog(inputType,inputHint,btnText);
+	}
+</script>
+</head>
+
+<body>
+	<div class="tit">日期时间功能</div>
+	<div class="conbor">
+		<div class="consj">
+			<span>1.打开日期</span>
+			年份：<input class="textbox" type="text" value="1900" id="addYear"><br>
+			月份：<input class="textbox" type="text" value="10" id="addMonth"><br>
+			天数：<input class="textbox" type="text" value="19" id="addDay"><br>
+			<input class="btn" type="button" value="打开日期" onclick="uexControl.openDatePicker(document.getElementById('addYear').value,document.getElementById('addMonth').value,document.getElementById('addDay').value);">
+			<span>日期为：</span>
+			<div class="tcxx" id="date"></div>
+			<span>2.打开时间</span>
+			小时：<input class="textbox" type="text" value="10" id="addHour"><br>
+			分钟：<input class="textbox" type="text" value="10" id="addMinute"><br>
+			<input class="btn" type="button" value="打开时间" onclick="uexControl.openTimePicker(document.getElementById('addHour').value,document.getElementById('addMinute').value);">
+			<span>时间为：</span>
+			<div class="tcxx" id="systime"></div>
+			
+			<span>打开输入对话框：</span>
+			输入框提示文字:<input class="textbox" type="text" value="" id="inputHint"><br>
+			输入文字类型(0-->标准;1--->数字):
+			<input class="textbox" type="text" value="1" id="inputType"><br>
+		     按钮文字:<input class="textbox" type="text" value="19" id="btnText"><br>
+		     
+			<input class="btn" type="button" value="打开输入对话框" onclick="openInput();">
+			<div class="tcxx" id="inputText"></div>
+			<input class="btn" type="button" value="返回" onclick="uexWindow.back();">		
+		</div>
+	</div>
+</body>
+</html>

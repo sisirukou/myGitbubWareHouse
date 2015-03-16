@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport"
+	content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, user-scalable=no" />
+<link rel="stylesheet" type="text/css" href="css/index.css">
+<title>理财定制插件</title>
+<script type="text/javascript">
+    window.uexOnload = function() {
+		uexWidgetOne.onError = function(opCode, errorCode, errorDesc) {
+			alert(errorCode + ":" + errorDesc);
+		}        uexHexagonal.naviClicked = function(index){			var msg = "";			switch (index) {			case 0:				msg = "东航移动应用平台POC";				break;			case 1:				msg = "航班动态";				break;			case 2:				msg = "航班雷达";				break;			case 3:				msg = "员工工资";				break;			case 4:				msg = "员工手册";				break;			case 5:				msg = "员工名片";				break;			}			uexWindow.toast(0, 5, msg, 1500);         }        uexHexagonal.open();
+	}
+</script>
+</head>
+
+<body>
+	<div class="tit">理财定制插件</div><br>
+    <input type="button" value="打开立方体" onclick = "uexHexagonal.open();"/>        <input type="button" value="关闭立方体" onclick = "uexHexagonal.close();"/>    
+    <input type="button" value="返回" onclick="uexWindow.back();"/>
+</body>
+</html>

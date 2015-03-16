@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+   <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, user-scalable=no" />
+<link rel="stylesheet" type="text/css" href="css/index.css">
+<title>蓝牙打印机功能</title>
+<script type="text/javascript">
+
+window.uexOnload = function(){
+	uexImageBrowser.cbPick = function(opCode, dataType, data) {
+		document.getElementById('pickImage').innerHTML = data;
+		document.getElementById('pickUrl').value = data;
+	}
+}
+</script>
+</head>
+
+<body>
+	<div class="tit">蓝牙打印机功能</div>
+	<div class="conbor">
+		<div class="consj">
+		<span>查找设备：</span>
+		<input  class="btn" type="button" value="查找设备" onclick="uexBlueToothPrint.search();">	
+		<span>选择图片：</span>
+		<input  class="btn" type="button" value="选择图片" onclick="uexImageBrowser.pick();">	
+		<div class="tcxx" id="pickImage"></div>
+		<input type="hidden" id="pickUrl">
+		<span>发送数据：</span>
+		<input  class="btn" type="button" value="发送数据" onclick="uexBlueToothPrint.sendData(document.getElementById('pickUrl').value);">	
+		</div>
+		<input class="btn" type="button" value="返回" onclick="uexWindow.back();">
+	</div>
+</body>
+</html>

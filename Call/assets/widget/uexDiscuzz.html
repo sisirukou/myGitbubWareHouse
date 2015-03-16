@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, user-scalable=no" /><link rel="stylesheet" type="text/css" href="css/index.css">
+<title>车评网新控件</title>
+<script type="text/javascript">
+var cText = 0;
+var cJson = 1;
+var cInt = 2;
+
+	window.uexOnload = function(){
+        uexDiscuzz.cbForum = function(opCode,dataType,data){
+            if(data.length==0){
+                document.getElementById("selectItem").innerHTML ="未选择";
+            }else{
+                var resultObj =eval('('+data+')');
+                document.getElementById("selectItem").innerHTML = resultObj.fid +","+resultObj.cid;
+            }
+            
+        };
+	}
+    function openBrandPicker(){
+        var jsonStr ='{"3":{"name":"版块3","fid":"3","cls":{"7":"分类1","8":"分类2","9":"分类3"}},"4":{"name":"版块4","fid":"4"}}';
+        uexDiscuzz.forum(jsonStr);
+	}
+</script>
+</head>
+
+<body>
+	<div class="tit">汽车品牌选择功能</div>
+	<div class="conbor">
+            <span>1.汽车选择控件</span>
+            <input class="btn" type="button" value="打开控件" onclick="openBrandPicker();">
+            <div class="tcxx" id="selectItem"></div><br>
+			<input class="btn" type="button" value="返回" onclick="uexWindow.back();">		
+		</div>
+	</div>
+</body>
+</html>
